@@ -1,14 +1,14 @@
 //seleziono il contenitore ed il bottone
 const container = document.getElementById("grid");
 const myBtn = document.querySelector("button");
-let alreadyPlayed = false;
+let alreadyPlayed;
 let points = 0;
+let gameOver;
 
 // L’utente clicca su un bottone che genererà una griglia di gioco quadrata.
 myBtn.addEventListener("click",generateGrid);
 //creo l'array di numeri in ordine casuale
-const gridNumbers = genSequenzaNumRandom(1,100,10);
-console.log(gridNumbers);
+
 
 // Ogni cella ha un numero progressivo, da 1 a 100.
 // Ci saranno quindi 10 caselle per ognuna delle 10 righe.
@@ -20,6 +20,11 @@ console.log(gridNumbers);
 
 //Funzione Grid Generator
 function generateGrid() {
+    container.innerHTML = "";
+    gameOver = false;
+    let alreadyPlayed = false;
+    gridNumbers = genSequenzaNumRandom(1,100,10);
+    console.log(gridNumbers);
     if(alreadyPlayed === false){
         //aggiungo i blocchi per 100 volte
     for(let i = 0; i < 100; i++) {
@@ -34,9 +39,7 @@ function generateGrid() {
     addClassWithLinstener("clicked");
     //cambio stato variabile
     alreadyPlayed = true;
-    
-    
-    }     
+    }   
 }
 
 
@@ -58,12 +61,17 @@ function addClassWithLinstener(className) {
     //Gestisco il click sul singolo elemento
     box[i].addEventListener("click",
         function(){
+            if (gameOver){ // Se il gioco è finito, esci dalla funzione
+                alert("Clicca play per fare una nuova partita");
+                return;
+            } 
             this.classList.add(className); 
             console.log("Hai cliccato il box", i + 1);
             //Aggiunta classe bomb or safe
-            if(gridNumbers.includes(i+1)){
+            if(gridNumbers.includes(i + 1)){
                 this.classList.add("bomb");
                 alert("PARTITA TERMINATA HAI FATTO " + points + " PUNTI");
+                gameOver = true;
             } else{
                 this.classList.add("safe");
                 points++;
