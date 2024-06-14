@@ -42,7 +42,7 @@ button{
 
 .square:hover{
     cursor: pointer;
-    background-color: #7FFFD4;
+    background-color: white;
 }
 
 .clicked.safe{

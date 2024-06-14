@@ -2,6 +2,7 @@
 const container = document.getElementById("grid");
 const myBtn = document.querySelector("button");
 let alreadyPlayed = false;
+let points = 0;
 
 // L’utente clicca su un bottone che genererà una griglia di gioco quadrata.
 myBtn.addEventListener("click",generateGrid);
@@ -57,18 +58,19 @@ function addClassWithLinstener(className) {
     //Gestisco il click sul singolo elemento
     box[i].addEventListener("click",
         function(){
-            this.classList.add(className);
-            console.log("Hai cliccato il box",i + 1);
+            this.classList.add(className); 
+            console.log("Hai cliccato il box", i + 1);
             //Aggiunta classe bomb or safe
             if(gridNumbers.includes(i+1)){
                 this.classList.add("bomb");
-                console.log(this);
+                alert("PARTITA TERMINATA HAI FATTO " + points + " PUNTI");
             } else{
                 this.classList.add("safe");
-                console.log(this);
+                points++;
+                console.log("Hai fatto ",points,"punti");
             }
         }
-    );
+    )
     }   
 }
 
