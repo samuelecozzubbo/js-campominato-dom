@@ -31,8 +31,6 @@ function generateGrid() {
 
     //Invoco funzione add class
     addClassWithLinstener("clicked");
-    //
-    addClassBombOrSafe();
     //cambio stato variabile
     alreadyPlayed = true;
     
@@ -59,31 +57,21 @@ function addClassWithLinstener(className) {
     //Gestisco il click sul singolo elemento
     box[i].addEventListener("click",
         function(){
-            this.classList.toggle(className);
+            this.classList.add(className);
             console.log("Hai cliccato il box",i + 1);
+            //Aggiunta classe bomb or safe
+            if(gridNumbers.includes(i+1)){
+                this.classList.add("bomb");
+                console.log(this);
+            } else{
+                this.classList.add("safe");
+                console.log(this);
+            }
         }
     );
     }   
 }
 
-
-
-//Funzione add class
-function addClassBombOrSafe() {
-    //Richiamo i box
-    const box = document.querySelectorAll(".square");
-    console.log("Sto funzionando");
-    for(let i = 0; i < 100; i++) {
-        //aggiungo classi bomb o safe
-        let numeroIesimo = gridNumbers[i];
-        console.log(numeroIesimo);
-        if(numeroIesimo === i){
-            box[i].classList.add =" bomb";
-        } else{
-            box[i].classList.add = "safe";
-        }
-    }   
-}
 
 
 //funzione che genera un numero random 
