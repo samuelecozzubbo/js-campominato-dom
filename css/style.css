@@ -45,8 +45,12 @@ button{
     background-color: #7FFFD4;
 }
 
-.clicked{
+.clicked.safe{
     background-color: #7FFFD4;
+}
+
+.clicked.bomb{
+    background-color: red;
 }
 
 /* Media query */
