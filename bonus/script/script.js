@@ -89,6 +89,11 @@ function addClassWithLinstener(className) {
             if(gridNumbers.includes(i + 1)){
                 this.classList.add("bomb");
                 alert("PARTITA TERMINATA HAI FATTO " + points + " PUNTI");
+                //STAMPA PUNTI
+                let scoreList = document.getElementById("scoreList");
+                let scoreElement = document.createElement("li");
+                scoreList.appendChild(scoreElement);
+                scoreElement.textContent = points;
                 gameOver = true;
             } else{
                 this.classList.add("safe");
