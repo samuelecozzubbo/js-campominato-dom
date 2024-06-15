@@ -6,12 +6,13 @@
 }
 
 #wrapper{
-    min-width: 100vw;
-    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
     background-color: #011627;
+    overflow-y: auto;
 }
 
-.main-title,#score{
+.main-title{
     max-width: 1200px;
     margin: 0 auto;
     color: white;
@@ -19,7 +20,6 @@
     flex-direction: column;
     align-items: center;
     font-size: 2em;
-    list-style-type: none;
 }
 
 button{
@@ -57,6 +57,17 @@ button{
     background-color: red;
 }
 
+#score{
+    position: absolute;
+    right: 5%;
+    top: 0;
+    transform: translate(0,-5%);
+    max-height: 100vh;
+    overflow: auto;
+    color: white;
+    font-size: 2em;
+}
+
 /* Media query */
 @media screen and (max-width:800px) {
     .main-title{
@@ -65,5 +76,14 @@ button{
 
     #grid{
         max-width: 80%;
+    }
+    #score{
+        position: relative;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-size: 1em;
+        
     }
 }
