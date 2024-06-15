@@ -2,15 +2,18 @@
 const container = document.getElementById("grid");
 const myBtn = document.querySelector("button");
 let alreadyPlayed;
-let points = 0;
+let points;
 let gameOver;
+let difficulty;
+let nuovoboxSize;
+
 
 // L’utente clicca su un bottone che genererà una griglia di gioco quadrata.
 myBtn.addEventListener("click",generateGrid);
 //creo l'array di numeri in ordine casuale
 
 
-// Ogni cella ha un numero progressivo, da 1 a 100.
+// Ogni cella ha un numero progressivo, da 1 a difficulty.
 // Ci saranno quindi 10 caselle per ognuna delle 10 righe.
 // Quando l’utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
 
@@ -21,16 +24,30 @@ myBtn.addEventListener("click",generateGrid);
 //Funzione Grid Generator
 function generateGrid() {
     container.innerHTML = "";
+    difficulty = parseInt(document.getElementById("difficulty").value);
+    let bombNumbers = parseInt(difficulty / 10);
+    console.log(bombNumbers);
+    console.log(difficulty);
     gameOver = false;
     let alreadyPlayed = false;
     points = 0;
-    gridNumbers = genSequenzaNumRandom(1,100,10);
+    gridNumbers = genSequenzaNumRandom(1,difficulty,bombNumbers);
     console.log(gridNumbers);
     if(alreadyPlayed === false){
-        //aggiungo i blocchi per 100 volte
-    for(let i = 0; i < 100; i++) {
+        //aggiungo i blocchi per difficulty volte
+    for(let i = 0; i < difficulty; i++) {
         //creo uno square
         const nuovobox = createElementWithClass("div", "square");
+        //Generazione width celle in base alla difficoltà scelta
+        if(difficulty === 49){
+            nuovoboxSize = 100 / 7;
+        }else if(difficulty === 81){
+            nuovoboxSize = 100 / 9;
+        }else {
+            nuovoboxSize = 100 / 10;
+        }
+        nuovobox.style.width = `${nuovoboxSize}%`;
+        
         //aggiungo il blocco al contenitore
         container.append(nuovobox);
         nuovobox.append(i + 1);
@@ -58,7 +75,7 @@ function createElementWithClass(tag, classToAdd) {
 function addClassWithLinstener(className) {
     //Richiamo i box
     const box = document.querySelectorAll(".square");
-    for(let i = 0; i < 100; i++) {
+    for(let i = 0; i < difficulty; i++) {
     //Gestisco il click sul singolo elemento
     box[i].addEventListener("click",
         function(){

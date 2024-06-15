@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: cursive;
+}
+
+#wrapper{
+    width: 100vw;
+    height: 100vh;
+    background-color: #011627;
+}
+
+.main-title, h2{
+    max-width: 1200px;
+    margin: 0 auto;
+    color: white;
+    text-align: center;
+    font-size: 2em;
+}
+
+button{
+    padding: 5px 10px;
+    font-size: 20px;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+#grid{
+    max-width: 35%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.square{
+    aspect-ratio: 1;
+    border: solid 2px white;
+    color: white;
+}
+
+.square:hover{
+    cursor: pointer;
+    background-color: white;
+}
+
+.clicked.safe{
+    background-color: #7FFFD4;
+}
+
+.clicked.bomb{
+    background-color: red;
+}
+
+/* Media query */
+@media screen and (max-width:800px) {
+    .main-title{
+        font-size: 1em;
+    }
+
+    #grid{
+        max-width: 80%;
+    }
+}
